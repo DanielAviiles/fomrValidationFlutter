@@ -154,7 +154,6 @@ class _ProductoPageState extends State<ProductoPage> {
   }
 
   Widget _mostrarFoto() {
-
     if ( producto.fotoUrl != null ) {
       return FadeInImage(
         image: NetworkImage( producto.fotoUrl ),
@@ -173,17 +172,17 @@ class _ProductoPageState extends State<ProductoPage> {
 
 
   _seleccionarFoto() async {
-    _processImage(ImageSource.gallery);
+    _procesarImagen(ImageSource.gallery);
   }
 
-  _tomarFoto(){
-
+  _tomarFoto() async {
+    _procesarImagen(ImageSource.camera);
   }
 
-  _processImage(ImageSource origin) async {
+  _procesarImagen(ImageSource origen) async {
     final _picker = ImagePicker();
     final pickedFile = await _picker.getImage(
-      source: origin,
+      source: origen,
     );
 
     foto = File(pickedFile.path);
